@@ -6,10 +6,10 @@ import pandas as pd
 import seaborn as sns
 
 conn = psycopg2.connect(database="Chinook",
-                        host="localhost",
-                        user="postgres",
-                        password="Catalina1234",
-                        port="5432")
+                        host="",
+                        user="",
+                        password="",
+                        port="")
 
 cursor = conn.cursor()
 
@@ -19,7 +19,7 @@ cursor.execute('SELECT * FROM public."Album"')
 
 query_emp = """
 SELECT e."FirstName" || ' ' || e."LastName" AS empleado,
-       COUNT(c."CustomerId") AS cantidad_clientes
+    COUNT(c."CustomerId") AS cantidad_clientes
 FROM "Employee" e
 LEFT JOIN "Customer" c ON e."EmployeeId" = c."SupportRepId"
 GROUP BY empleado
@@ -42,7 +42,7 @@ plt.show()
 
 query_ventas = """
 SELECT DATE_TRUNC('month', "InvoiceDate") AS mes,
-       SUM("Total") AS total_ventas
+    SUM("Total") AS total_ventas
 FROM "Invoice"
 GROUP BY mes
 ORDER BY mes;
@@ -64,3 +64,4 @@ plt.ylabel("Total ventas")
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
+
